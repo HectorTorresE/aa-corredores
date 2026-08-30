@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AA Corredores — Corretaje de seguros</title>
+  <meta name="description" content="Corredora de seguros dominicana: salud, ARS, AFP, viajes y reaseguros." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top"><img src="public/logo.svg" alt="AA Corredores" width="200" height="52" /></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#about" data-i18n="nav.about">Nosotros</a>
+        <a href="#services" data-i18n="nav.services">Servicios</a>
+        <a href="#travel" data-i18n="nav.travel">Viajes</a>
+        <a href="#contact" data-i18n="nav.contact">Contacto</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" data-lang="es" class="is-active">ES</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+        <a class="btn btn-sm" href="#contact" data-i18n="nav.cta">Asesoría</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-panel" aria-hidden="true"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Registrada ante la Superintendencia de Seguros</p>
+          <h1 data-i18n="hero.title">AA Corredores</h1>
+          <p class="tagline" data-i18n="hero.tagline">Corretaje claro. Coberturas que sí encajan.</p>
+          <p class="lede" data-i18n="hero.lede">Corredora de seguros dominicana dedicada al corretaje de seguros, reaseguros y valores, con asesoría técnica para personas y empresas.</p>
+          <div class="cta-row">
+            <a class="btn" href="#contact" data-i18n="hero.cta1">Solicitar cotización</a>
+            <a class="btn btn-ghost" href="#services" data-i18n="hero.cta2">Ver coberturas</a>
+          </div>
+        </div>
+        <aside class="hero-aside" aria-hidden="true">
+          <div class="geo geo-block"></div>
+          <div class="geo geo-dots"></div>
+          <div class="geo geo-lines"></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div>
+          <h2 data-i18n="about.title">Confianza local, visión profesional</h2>
+          <p data-i18n="about.p">Intermediamos entre clientes y aseguradoras para conseguir las mejores coberturas — salud, ARS, AFP, viajes y más — con acompañamiento técnico en cada paso.</p>
+          <p class="founder" data-i18n="about.founder">Miguel A. Ramírez P. · Fundador</p>
+        </div>
+        <figure class="portrait">
+          <img src="public/brand-banner.png" alt="AA Corredores — Miguel A. Ramírez P., Fundador" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="services">
+      <div class="wrap">
+        <h2 data-i18n="services.title">Servicios</h2>
+        <p class="section-lede" data-i18n="services.lede">Administración y comercialización de seguros, con intermediación seria y transparente.</p>
+        <div class="services">
+          <article><h3 data-i18n="services.s1.t">Seguros y reaseguros</h3><p data-i18n="services.s1.p">Corretaje registrado y asesoría técnica en seguros y reaseguros.</p></article>
+          <article><h3 data-i18n="services.s2.t">Salud, ARS y AFP</h3><p data-i18n="services.s2.p">Orientación para personas y empresas que buscan protección adecuada.</p></article>
+          <article><h3 data-i18n="services.s3.t">Valores e intermediación</h3><p data-i18n="services.s3.p">Puente entre usted y las aseguradoras para mejores condiciones de cobertura.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="travel">
+      <div class="wrap narrow">
+        <h2 data-i18n="travel.title">Seguros de viaje</h2>
+        <p data-i18n="travel.p">Administración y comercialización de seguros de viaje para que salga con respaldo — antes, durante y después del trayecto.</p>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <h2 data-i18n="contact.title">Contacto</h2>
+          <p data-i18n="contact.p">Cuéntenos qué necesita proteger. Le ayudamos a comparar y elegir.</p>
+        </div>
+        <address class="vcard">
+          <p><a href="tel:+18095349502">+1 809-534-9502</a></p>
+          <p><a href="mailto:admin@aacorredores.com">admin@aacorredores.com</a></p>
+          <p data-i18n="contact.addr">Calle Crisantemos #1, Urb. Los Jardines. Santo Domingo, República Dominicana</p>
+        </address>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>AA Corredores</span>
+      <p data-i18n="footer">© AA Corredores · Santo Domingo</p>
+    </div>
+  </footer>
+  <script src="i18n.js"></script>
+</body>
+</html>
