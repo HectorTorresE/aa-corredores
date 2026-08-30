@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hectortorrese.github.io/aa-corredores/sitemap.xml
