@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entrega SEO — Goval TPA · AA Corredores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0a2342;
+      --navy-deep: #061628;
+      --teal: #1a6f9a;
+      --lime: #6fbf2c;
+      --fog: #e8eef5;
+      --ink: #152033;
+      --muted: #5a6a7d;
+      --white: #fff;
+      --font: "Outfit", system-ui, sans-serif;
+      --display: "Source Serif 4", Georgia, serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--navy-deep);
+      overflow: hidden;
+    }
+
+    .deck {
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      padding: clamp(1.5rem, 4vw, 3.5rem);
+      background:
+        radial-gradient(1200px 600px at 100% -10%, rgba(26, 111, 154, 0.28), transparent 55%),
+        radial-gradient(900px 500px at -10% 110%, rgba(111, 191, 44, 0.12), transparent 50%),
+        linear-gradient(160deg, #f4f7fb 0%, #eef3f8 45%, #e4edf5 100%);
+      color: var(--ink);
+      overflow: auto;
+    }
+    .slide.is-active { display: flex; flex-direction: column; }
+    .slide.dark {
+      background:
+        radial-gradient(1000px 500px at 90% 0%, rgba(26, 111, 154, 0.35), transparent 50%),
+        radial-gradient(800px 400px at 10% 100%, rgba(111, 191, 44, 0.18), transparent 45%),
+        linear-gradient(165deg, var(--navy-deep), var(--navy));
+      color: var(--white);
+    }
+    .slide.dark .muted { color: rgba(255,255,255,0.72); }
+    .slide.dark .kicker { color: var(--lime); }
+    .slide.dark a { color: #9ad0ef; }
+
+    .kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin: 0 0 0.75rem;
+    }
+    h1, h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    h1 { font-size: clamp(2rem, 5vw, 3.4rem); max-width: 18ch; }
+    h2 { font-size: clamp(1.55rem, 3.5vw, 2.45rem); }
+    .lede {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      max-width: 42rem;
+      line-height: 1.55;
+      margin: 0 0 1.5rem;
+    }
+    .muted { color: var(--muted); }
+    .en {
+      display: block;
+      font-size: 0.88em;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 0.2rem;
+    }
+
+    .grow { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .footer-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 1.25rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(10, 35, 66, 0.12);
+    }
+    .slide.dark .footer-meta {
+      border-top-color: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.55);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+    @media (max-width: 800px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(10, 35, 66, 0.1);
+      padding: 1.15rem 1.25rem;
+    }
+    .slide.dark .panel {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .panel h3 {
+      margin: 0 0 0.65rem;
+      font-size: 1.05rem;
+      color: var(--navy);
+    }
+    .slide.dark .panel h3 { color: #fff; }
+    .panel p { margin: 0 0 0.75rem; font-size: 0.95rem; line-height: 1.45; }
+    .panel ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .panel li + li { margin-top: 0.35rem; }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      background: var(--navy);
+      color: #fff;
+      margin-bottom: 0.55rem;
+    }
+    .tag.aa { background: var(--lime); color: var(--navy); }
+
+    .list-check {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.65rem;
+    }
+    .list-check li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem;
+      align-items: start;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .list-check li::before {
+      content: "";
+      width: 0.65rem;
+      height: 0.65rem;
+      margin-top: 0.4rem;
+      background: var(--lime);
+      border-radius: 1px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.55rem 0.65rem;
+      border-bottom: 1px solid rgba(10, 35, 66, 0.1);
+      vertical-align: top;
+    }
+    th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+    .slide.dark th, .slide.dark td { border-bottom-color: rgba(255,255,255,0.12); }
+    .slide.dark th { color: rgba(255,255,255,0.55); }
+
+    a { color: var(--teal); }
+    .links a { display: block; margin: 0.35rem 0; word-break: break-all; }
+
+    .agenda {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: ag;
+      display: grid;
+      gap: 0.7rem;
+      max-width: 36rem;
+    }
+    .agenda li {
+      counter-increment: ag;
+      display: grid;
+      grid-template-columns: 2.2rem 1fr;
+      gap: 0.75rem;
+      align-items: baseline;
+      font-size: 1.05rem;
+    }
+    .agenda li::before {
+      content: counter(ag, decimal-leading-zero);
+      font-weight: 700;
+      color: var(--teal);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chrome {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.65rem 1rem;
+      background: rgba(6, 22, 40, 0.92);
+      color: #fff;
+      font-size: 0.8rem;
+      backdrop-filter: blur(8px);
+    }
+    .chrome .dots { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: center; }
+    .chrome button {
+      border: 0;
+      background: transparent;
+      color: rgba(255,255,255,0.45);
+      width: 0.55rem;
+      height: 0.55rem;
+      padding: 0;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .chrome button.is-on { background: var(--lime); color: var(--lime); width: 1.1rem; border-radius: 999px; }
+    .nav-btns { display: flex; gap: 0.5rem; }
+    .nav-btns button {
+      width: auto;
+      height: auto;
+      border-radius: 0.25rem;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      padding: 0.4rem 0.75rem;
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .nav-btns button:hover { background: rgba(255,255,255,0.2); }
+    .hint { opacity: 0.55; }
+    .deck { padding-bottom: 3rem; }
+
+    .split-title {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      align-items: end;
+    }
+    @media (max-width: 800px) {
+      .split-title { grid-template-columns: 1fr; }
+    }
+
+    .note {
+      margin-top: 1rem;
+      padding: 0.85rem 1rem;
+      border-left: 3px solid var(--lime);
+      background: rgba(111, 191, 44, 0.1);
+      font-size: 0.92rem;
+    }
+    .slide.dark .note {
+      background: rgba(111, 191, 44, 0.12);
+      border-left-color: var(--lime);
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck" aria-live="polite">
+
+    <!-- 0 -->
+    <section class="slide dark is-active" data-slide>
+      <p class="kicker">Entrega al cliente · Client delivery · 2026-08-30</p>
+      <div class="grow">
+        <div class="split-title">
+          <div>
+            <h1>SEO de las landings</h1>
+            <p class="lede muted">
+              Goval TPA · AA Corredores
+              <span class="en">Landing page SEO package — approved focus, what shipped, and what’s needed from you.</span>
+            </p>
+          </div>
+          <div class="panel">
+            <p><strong>Previews</strong></p>
+            <div class="links">
+              <a href="https://hectortorrese.github.io/goval-tpa/" target="_blank" rel="noopener">goval-tpa</a>
+              <a href="https://hectortorrese.github.io/aa-corredores/" target="_blank" rel="noopener">aa-corredores</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-meta"><span>Hector Torres · Helix</span><span>Presentación SEO</span></div>
+    </section>
+
+    <!-- 1 -->
+    <section class="slide" data-slide>
+      <p class="kicker">Agenda</p>
+      <div class="grow">
+        <h2>Qué cubrimos hoy</h2>
+        <p class="lede muted">What this deck covers</p>
+        <ol class="agenda">
+          <li>Enfoque SEO aprobado <span class="en">Approved SEO focus (Goval vs AA)</span></li>
+          <li>Qué se implementó en ambas páginas <span class="en">What shipped on both sites</span></li>
+          <li><code>robots.txt</code> + <code>sitemap.xml</code> explicados</li>
+          <li>URLs, Schema, hosting</li>
+          <li>Pendiente del cliente <span class="en">What we need from you</span></li>
+        </ol>
+      </div>
+      <div class="footer-meta"><span>Goval TPA · AA Corredores</span><span></span></div>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide" data-slide>
+      <p class="kicker">1 · Enfoque aprobado</p>
+      <div class="grow">
+        <h2>Dos marcas, dos temas claros</h2>
+        <p class="lede muted">Two brands, two distinct SEO topics — no overlap.</p>
+        <div class="grid-2">
+          <div class="panel">
+            <span class="tag">Goval TPA</span>
+            <h3>TPA · asistencia médica y al viajero</h3>
+            <p>Third Party Administrator en República Dominicana: emergencias, siniestros, red de prestadores, 24/7.</p>
+            <p class="muted"><strong>No priorizamos:</strong> corretaje de seguros general (eso es AA).</p>
+          </div>
+          <div class="panel">
+            <span class="tag aa">AA Corredores</span>
+            <h3>Corredora de seguros · Santo Domingo</h3>
+            <p>Corretaje y reaseguros: salud/ARS/AFP, viajes, intermediación con aseguradoras, Superintendencia.</p>
+            <p class="muted"><strong>No priorizamos:</strong> TPA / gestión operativa de siniestros (eso es Goval).</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-meta"><span>Approved SEO focus</span><span></span></div>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide" data-slide>
+      <p class="kicker">Goval TPA · Keywords</p>
+      <div class="grow">
+        <h2>Tema central: TPA en RD</h2>
+        <table>
+          <thead>
+            <tr><th>Español</th><th>English</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Third Party Administrator / TPA República Dominicana</td><td>Third Party Administrator / TPA Dominican Republic</td></tr>
+            <tr><td>asistencia médica</td><td>medical assistance</td></tr>
+            <tr><td>asistencia al viajero 24/7</td><td>traveler assistance 24/7</td></tr>
+            <tr><td>emergencias médicas y siniestros</td><td>medical emergencies and claims</td></tr>
+            <tr><td>red de prestadores médicos</td><td>medical provider network</td></tr>
+            <tr><td>TPA para aseguradoras</td><td>TPA for insurers</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer-meta"><span>Goval TPA</span><span></span></div>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide" data-slide>
+      <p class="kicker">AA Corredores · Keywords</p>
+      <div class="grow">
+        <h2>Tema central: corretaje en RD</h2>
+        <table>
+          <thead>
+            <tr><th>Español</th><th>English</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>corredora de seguros República Dominicana</td><td>insurance brokerage Dominican Republic</td></tr>
+            <tr><td>corretaje de seguros y reaseguros</td><td>insurance &amp; reinsurance brokerage</td></tr>
+            <tr><td>seguros de salud, ARS, AFP</td><td>health insurance, ARS, AFP</td></tr>
+            <tr><td>seguros de viaje</td><td>travel insurance</td></tr>
+            <tr><td>Superintendencia de Seguros</td><td>Insurance Superintendency</td></tr>
+            <tr><td>intermediación con aseguradoras</td><td>intermediation with insurers</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="footer-meta"><span>AA Corredores</span><span></span></div>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide" data-slide>
+      <p class="kicker">2 · Implementado</p>
+      <div class="grow">
+        <h2>Qué hay en ambas páginas</h2>
+        <p class="lede muted">Shipped on both landings · idioma por defecto: español (mercado RD)</p>
+        <ul class="list-check">
+          <li>Títulos y meta descriptions en ES y EN (cambian con el idioma)</li>
+          <li>Open Graph + Twitter cards (compartir en redes / WhatsApp)</li>
+          <li><code>canonical</code> + <code>hreflang</code> (<code>?lang=es</code> / <code>?lang=en</code>)</li>
+          <li><code>robots.txt</code> + <code>sitemap.xml</code></li>
+          <li>Datos estructurados JSON-LD (Schema.org)</li>
+          <li>Encabezados H1/H2/H3 alineados a los temas SEO — sin relleno artificial</li>
+        </ul>
+      </div>
+      <div class="footer-meta"><span>What was implemented</span><span></span></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide" data-slide>
+      <p class="kicker">2.1 · Para buscadores</p>
+      <div class="grow">
+        <h2><code>robots.txt</code> + <code>sitemap.xml</code></h2>
+        <p class="lede muted">Archivos para Google y otros crawlers — el visitante normal no los ve.</p>
+        <div class="grid-2">
+          <div class="panel">
+            <h3>robots.txt</h3>
+            <p><strong>ES:</strong> Instrucciones para crawlers: qué pueden indexar. Aquí: <strong>permitir todo</strong> el sitio y señalar el sitemap.</p>
+            <p class="muted"><strong>EN:</strong> Rules for crawlers. Here: allow the whole site and point to the sitemap.</p>
+          </div>
+          <div class="panel">
+            <h3>sitemap.xml</h3>
+            <p><strong>ES:</strong> Lista oficial de URLs (home + ES/EN) para encontrarlas más rápido y saber que hay dos idiomas.</p>
+            <p class="muted"><strong>EN:</strong> Official URL list so engines find pages faster and know both languages exist.</p>
+          </div>
+        </div>
+        <div class="note">
+          Juntos = <strong>permiso + mapa</strong>. No rankean solos; ayudan al descubrimiento.
+          Con dominio propio: actualizar URLs en ambos y enviar el sitemap en Search Console.
+        </div>
+      </div>
+      <div class="footer-meta"><span>Permission + map for search bots</span><span></span></div>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide" data-slide>
+      <p class="kicker">Schema.org · JSON-LD</p>
+      <div class="grow">
+        <h2>Datos estructurados</h2>
+        <p class="lede muted">Helps Google understand the business type.</p>
+        <table>
+          <thead>
+            <tr><th>Sitio</th><th>Tipo Schema.org</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Goval TPA</td>
+              <td><code>Organization</code> (+ knowsAbout TPA / medical / travel assistance)</td>
+            </tr>
+            <tr>
+              <td>AA Corredores</td>
+              <td><code>InsuranceAgency</code> (+ dirección, teléfono, fundador)</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note" style="margin-top:1.5rem">
+          Ejemplos live:<br />
+          <a href="https://hectortorrese.github.io/goval-tpa/robots.txt" target="_blank" rel="noopener">goval-tpa/robots.txt</a>
+          ·
+          <a href="https://hectortorrese.github.io/goval-tpa/sitemap.xml" target="_blank" rel="noopener">goval-tpa/sitemap.xml</a>
+          <span class="en">(misma idea en AA)</span>
+        </div>
+      </div>
+      <div class="footer-meta"><span>Structured data</span><span></span></div>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide" data-slide>
+      <p class="kicker">3 · URLs</p>
+      <div class="grow">
+        <h2>Previews y repositorios</h2>
+        <table>
+          <thead>
+            <tr><th>Sitio</th><th>Preview</th><th>Repo</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Goval TPA</td>
+              <td><a href="https://hectortorrese.github.io/goval-tpa/" target="_blank" rel="noopener">github.io/goval-tpa</a></td>
+              <td><a href="https://github.com/HectorTorresE/goval-tpa" target="_blank" rel="noopener">HectorTorresE/goval-tpa</a></td>
+            </tr>
+            <tr>
+              <td>AA Corredores</td>
+              <td><a href="https://hectortorrese.github.io/aa-corredores/" target="_blank" rel="noopener">github.io/aa-corredores</a></td>
+              <td><a href="https://github.com/HectorTorresE/aa-corredores" target="_blank" rel="noopener">HectorTorresE/aa-corredores</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note">
+          Probar idiomas: agregar <code>?lang=en</code> o <code>?lang=es</code> a la URL.<br />
+          Documento escrito: <a href="https://github.com/HectorTorresE/goval-tpa/blob/main/CLIENT-DELIVERY-SEO.md" target="_blank" rel="noopener">CLIENT-DELIVERY-SEO.md</a>
+        </div>
+      </div>
+      <div class="footer-meta"><span>Client URLs</span><span></span></div>
+    </section>
+
+    <!-- 9 -->
+    <section class="slide" data-slide>
+      <p class="kicker">4 · Pendiente del cliente</p>
+      <div class="grow">
+        <h2>Lo que necesitamos de ustedes</h2>
+        <p class="lede muted">Needs from client</p>
+        <ul class="list-check">
+          <li><strong>Goval:</strong> teléfono, correo y dirección oficiales (hoy hay email provisional).</li>
+          <li><strong>Dominios finales</strong> tras aprobación (ej. govaltpa.com, aacorredores.com) — actualizar canonical, sitemap y Schema.</li>
+          <li>Confirmar logo vectorial de AA si el SVG actual debe reemplazarse.</li>
+          <li>Opcional: Google Search Console + Analytics cuando exista dominio propio.</li>
+        </ul>
+      </div>
+      <div class="footer-meta"><span>Action items</span><span></span></div>
+    </section>
+
+    <!-- 10 -->
+    <section class="slide" data-slide>
+      <p class="kicker">5 · Hosting</p>
+      <div class="grow">
+        <h2>Dónde vive el sitio</h2>
+        <div class="grid-2">
+          <div class="panel">
+            <h3>Ahora</h3>
+            <p>GitHub Pages — gratis, para revisión y preview.</p>
+          </div>
+          <div class="panel">
+            <h3>Largo plazo</h3>
+            <p>A acordar tras aprobación: dominio propio + Pages / Cloudflare / Vercel, etc.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-meta"><span>Hosting</span><span></span></div>
+    </section>
+
+    <!-- 11 -->
+    <section class="slide dark" data-slide>
+      <p class="kicker">Cierre</p>
+      <div class="grow">
+        <h1>Listo para revisión</h1>
+        <p class="lede muted">
+          Abrir previews → probar ES/EN → confirmar pendientes → dominio final.
+          <span class="en">Open previews → try languages → confirm open items → final domain.</span>
+        </p>
+        <div class="grid-2">
+          <div class="panel">
+            <p><strong>Goval TPA</strong></p>
+            <a href="https://hectortorrese.github.io/goval-tpa/" target="_blank" rel="noopener">hectortorrese.github.io/goval-tpa</a>
+          </div>
+          <div class="panel">
+            <p><strong>AA Corredores</strong></p>
+            <a href="https://hectortorrese.github.io/aa-corredores/" target="_blank" rel="noopener">hectortorrese.github.io/aa-corredores</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-meta"><span>2026-08-30 · CLIENT-DELIVERY-SEO</span><span>Gracias</span></div>
+    </section>
+  </div>
+
+  <div class="chrome" role="navigation" aria-label="Controles de diapositivas">
+    <span class="hint">← → · espacio · clic</span>
+    <div class="dots" id="dots"></div>
+    <div class="nav-btns">
+      <button type="button" id="prev" aria-label="Anterior">Anterior</button>
+      <button type="button" id="next" aria-label="Siguiente">Siguiente</button>
+      <span id="counter" style="align-self:center;opacity:.7;min-width:3.5rem;text-align:right"></span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll("[data-slide]"));
+      const dots = document.getElementById("dots");
+      const counter = document.getElementById("counter");
+      let i = 0;
+
+      slides.forEach((_, idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-label", "Ir a diapositiva " + (idx + 1));
+        b.addEventListener("click", () => go(idx));
+        dots.appendChild(b);
+      });
+
+      function go(n) {
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+        Array.from(dots.children).forEach((d, idx) => d.classList.toggle("is-on", idx === i));
+        counter.textContent = (i + 1) + " / " + slides.length;
+        const footers = slides[i].querySelectorAll(".footer-meta span:last-child");
+        footers.forEach((el) => { if (!el.textContent || el.textContent.match(/^\d/)) el.textContent = ""; });
+      }
+
+      document.getElementById("prev").addEventListener("click", () => go(i - 1));
+      document.getElementById("next").addEventListener("click", () => go(i + 1));
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+          e.preventDefault();
+          go(i + 1);
+        } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+          e.preventDefault();
+          go(i - 1);
+        } else if (e.key === "Home") {
+          go(0);
+        } else if (e.key === "End") {
+          go(slides.length - 1);
+        }
+      });
+
+      go(0);
+    })();
+  </script>
+</body>
+</html>

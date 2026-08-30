@@ -7,6 +7,10 @@
 - https://hectortorrese.github.io/goval-tpa/  
 - https://hectortorrese.github.io/aa-corredores/  
 
+**Presentación HTML / HTML slides:**  
+- https://hectortorrese.github.io/goval-tpa/CLIENT-DELIVERY-SEO-SLIDES.html  
+- https://hectortorrese.github.io/aa-corredores/CLIENT-DELIVERY-SEO-SLIDES.html  
+
 ---
 
 ## 1. Enfoque SEO aprobado / Approved SEO focus
