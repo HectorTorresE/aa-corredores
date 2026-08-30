@@ -48,10 +48,25 @@ En **ambas** páginas:
 - Títulos y meta descriptions en ES y EN (cambian con el idioma)
 - Open Graph + Twitter cards (para compartir en redes / WhatsApp)
 - `canonical` + `hreflang` (`?lang=es` / `?lang=en`)
-- `robots.txt` + `sitemap.xml`
+- `robots.txt` + `sitemap.xml` (ver §2.1)
 - Datos estructurados JSON-LD (Schema.org)
 - Encabezados (H1/H2/H3) alineados a los temas SEO sin relleno artificial
 - Idioma por defecto: español (mercado RD)
+
+### 2.1 Qué son `robots.txt` y `sitemap.xml` / What they are
+
+Son dos archivos estándar que usan **Google y otros buscadores** para descubrir y recorrer el sitio. No los ve el visitante normal; son para los “bots” de búsqueda.
+
+| Archivo | Qué hace (ES) | What it does (EN) |
+|---------|---------------|-------------------|
+| **`robots.txt`** | Instrucciones para crawlers: qué pueden indexar. En estas landings: **permitir todo** el sitio y señalar dónde está el sitemap. | Rules for crawlers: what they may index. Here: **allow the whole site** and point to the sitemap. |
+| **`sitemap.xml`** | Lista oficial de URLs importantes (página principal + variantes ES/EN) para que el buscador las encuentre más rápido y sepa que hay dos idiomas. | Official list of important URLs (home + ES/EN variants) so search engines find them faster and know both languages exist. |
+
+**Ejemplo en Goval (igual idea en AA):**
+- `https://hectortorrese.github.io/goval-tpa/robots.txt`
+- `https://hectortorrese.github.io/goval-tpa/sitemap.xml`
+
+Cuando exista **dominio propio**, hay que actualizar las URLs dentro de ambos archivos (y en Search Console se puede “enviar” el sitemap).
 
 ### Schema específico
 | Sitio | Tipo Schema.org |
