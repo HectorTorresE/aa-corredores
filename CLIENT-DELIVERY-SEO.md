@@ -102,9 +102,26 @@ Probar idiomas: agregar `?lang=en` o `?lang=es` a la URL.
 
 ---
 
-## 5. Hosting
-- **Ahora:** GitHub Pages (gratis, para revisión).  
-- **Largo plazo:** a acordar tras aprobación (dominio propio + Pages / Cloudflare / Vercel, etc.).
+## 5. Hosting y formulario — costos / opciones
+
+### Formulario de contacto
+**Hoy:** FormSubmit (gratis). El mensaje va al correo del cliente. **No requiere infraestructura ni costo mensual.**
+
+| Opción | Costo típico | Notas |
+|--------|--------------|--------|
+| FormSubmit (actual) | $0 | Formulario → inbox; confirmar correo la 1ª vez |
+| Formspree / Web3Forms / similar | Gratis limitado, luego ~US$8–15/mes | Panel, más antispam / volumen |
+
+**Preguntar al cliente:** ¿basta el gratis o prefieren plan de pago?
+
+### Hosting (después de aprobar)
+| Opción | Hosting | Dominio |
+|--------|---------|---------|
+| **A** GitHub Pages / Cloudflare Pages / Vercel | $0 | ~US$10–15/año por marca |
+| **B** Su proveedor actual (cPanel, etc.) | Lo que ya paguen | El suyo |
+| **C** Nosotros configuramos A | $0 hosting | Dominio aparte |
+
+**Preguntar al cliente:** preferencia A / B / C, y si ya tienen dominio u hosting.
 
 ---
 
