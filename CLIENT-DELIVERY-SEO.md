@@ -7,9 +7,11 @@
 - https://hectortorrese.github.io/goval-tpa/  
 - https://hectortorrese.github.io/aa-corredores/  
 
-**Presentación HTML / HTML slides:**  
-- https://hectortorrese.github.io/goval-tpa/CLIENT-DELIVERY-SEO-SLIDES.html  
-- https://hectortorrese.github.io/aa-corredores/CLIENT-DELIVERY-SEO-SLIDES.html  
+**Presentación HTML para el cliente / Client HTML slides:**  
+- https://hectortorrese.github.io/goval-tpa/CLIENT-DELIVERY-SLIDES.html  
+- https://hectortorrese.github.io/aa-corredores/CLIENT-DELIVERY-SLIDES.html  
+
+(Detalle SEO escrito abajo; la presentación cubre la entrega completa + dónde revisar.)
 
 ---
 

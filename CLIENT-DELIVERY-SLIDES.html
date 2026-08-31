@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entrega — Goval TPA · AA Corredores</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0a2342;
+      --teal: #2a8bb8;
+      --lime: #7ed957;
+      --bg: #1a334d;
+      --bg-panel: rgba(255, 255, 255, 0.07);
+      --ink: #f2f6fa;
+      --muted: #a8b9cb;
+      --line: rgba(255, 255, 255, 0.14);
+      --font: "Outfit", system-ui, sans-serif;
+      --display: "Source Serif 4", Georgia, serif;
+      --chrome-h: 4.5rem;
+      --side-pad: 5.5rem;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .deck {
+      height: 100%;
+      position: relative;
+      padding-bottom: var(--chrome-h);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      bottom: var(--chrome-h);
+      display: none;
+      padding: clamp(1.25rem, 3vw, 2.25rem) var(--side-pad);
+      background:
+        radial-gradient(900px 480px at 100% 0%, rgba(42, 139, 184,.28), transparent 55%),
+        radial-gradient(700px 420px at 0% 100%, rgba(126, 217, 87,.1), transparent 50%),
+        linear-gradient(165deg, #122a40 0%, #1a334d 48%, #163047 100%);
+      overflow: auto;
+    }
+    .slide.is-active { display: flex; flex-direction: column; align-items: center; }
+
+    .slide-inner {
+      width: min(920px, 100%);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin: 0 0 0.65rem;
+    }
+    h1, h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 0.65rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-align: center;
+    }
+    h1 { font-size: clamp(2rem, 4.8vw, 3.2rem); max-width: 22ch; margin-inline: auto; }
+    h2 { font-size: clamp(1.45rem, 3.2vw, 2.2rem); }
+    .lede {
+      font-size: clamp(1.02rem, 1.9vw, 1.2rem);
+      line-height: 1.5;
+      margin: 0 auto 1.35rem;
+      color: var(--muted);
+      text-align: center;
+      max-width: 40rem;
+    }
+    .muted { color: var(--muted); }
+    .en {
+      display: block;
+      font-size: 0.9em;
+      font-weight: 500;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+
+    .grow {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 0;
+      width: 100%;
+    }
+
+    .footer-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      width: 100%;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.1rem;
+      width: 100%;
+    }
+    @media (max-width: 800px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      :root { --side-pad: 1.25rem; }
+    }
+
+    .panel {
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      padding: 1.2rem 1.3rem;
+      text-align: left;
+    }
+    .panel h3 {
+      margin: 0 0 0.55rem;
+      font-size: 1.08rem;
+      color: #fff;
+    }
+    .panel p { margin: 0 0 0.7rem; font-size: 0.98rem; line-height: 1.45; }
+    .panel p:last-child { margin-bottom: 0; }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.55rem;
+      background: var(--teal);
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .tag.aa { background: var(--lime); color: var(--navy); }
+
+    .list-check {
+      list-style: none;
+      margin: 0 auto;
+      padding: 0;
+      display: grid;
+      gap: 0.75rem;
+      max-width: 40rem;
+      width: 100%;
+      text-align: left;
+    }
+    .list-check li {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      font-size: clamp(1rem, 1.55vw, 1.12rem);
+      line-height: 1.4;
+    }
+    .list-check li::before {
+      content: "";
+      flex: 0 0 0.7rem;
+      width: 0.7rem;
+      height: 0.7rem;
+      margin-top: 0.4rem;
+      background: var(--lime);
+    }
+
+    .preview-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      width: 100%;
+    }
+    .preview-links a {
+      display: block;
+      padding: 1.15rem 1.25rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      transition: border-color .15s ease, background .15s ease;
+    }
+    .preview-links a:hover {
+      border-color: var(--lime);
+      background: rgba(126, 217, 87, .12);
+    }
+    .preview-links a span {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      word-break: break-all;
+    }
+
+    .agenda {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      width: 100%;
+    }
+    @media (max-width: 800px) { .agenda { grid-template-columns: 1fr; } }
+    .agenda li {
+      display: flex;
+      gap: 0.85rem;
+      align-items: flex-start;
+      font-size: 1.05rem;
+      line-height: 1.35;
+      padding: 0.95rem 1.05rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      text-align: left;
+    }
+    .agenda .num {
+      flex: 0 0 auto;
+      font-weight: 700;
+      color: var(--teal);
+      font-variant-numeric: tabular-nums;
+    }
+    .agenda .body { flex: 1; min-width: 0; }
+    .agenda .body strong { font-weight: 600; color: #fff; }
+
+    .note {
+      margin: 1.1rem auto 0;
+      padding: 0.9rem 1.05rem;
+      border-left: 3px solid var(--lime);
+      background: rgba(126, 217, 87, .1);
+      font-size: 0.95rem;
+      line-height: 1.45;
+      text-align: left;
+      width: 100%;
+    }
+
+    a { color: #8ec8e8; }
+    a:hover { color: #fff; }
+
+    .side-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      width: 3.25rem;
+      height: 3.25rem;
+      border: 2px solid rgba(255,255,255,.35);
+      background: rgba(10, 35, 66, .9);
+      color: #fff;
+      font-size: 1.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .side-nav:hover {
+      background: var(--lime);
+      color: var(--navy);
+      border-color: var(--lime);
+    }
+    .side-nav.prev { left: 0.65rem; }
+    .side-nav.next { right: 0.65rem; }
+
+    .chrome {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      height: var(--chrome-h);
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0 1rem;
+      background: #0b1c2e;
+      border-top: 1px solid var(--line);
+    }
+    .chrome .hint { opacity: .55; font-size: .8rem; min-width: 8rem; }
+    .chrome .dots {
+      display: flex;
+      gap: .45rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      flex: 1;
+    }
+    .chrome .dots button {
+      border: 0;
+      background: rgba(255,255,255,.28);
+      width: .7rem;
+      height: .7rem;
+      padding: 0;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .chrome .dots button.is-on {
+      background: var(--lime);
+      width: 1.4rem;
+      border-radius: 999px;
+    }
+    .nav-btns { display: flex; gap: .65rem; align-items: center; }
+    .nav-btns .go {
+      border: 2px solid rgba(255,255,255,.4);
+      background: #143456;
+      color: #fff;
+      padding: .7rem 1.2rem;
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      min-width: 7.5rem;
+    }
+    .nav-btns .go:hover {
+      background: var(--lime);
+      color: var(--navy);
+      border-color: var(--lime);
+    }
+    #counter {
+      min-width: 4rem;
+      text-align: right;
+      opacity: .75;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 700px) {
+      .side-nav { display: none; }
+      .chrome .hint { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <button type="button" class="side-nav prev" id="sidePrev" aria-label="Anterior">‹</button>
+  <button type="button" class="side-nav next" id="sideNext" aria-label="Siguiente">›</button>
+
+  <div class="deck" id="deck" aria-live="polite">
+
+    <!-- 1 Title -->
+    <section class="slide is-active" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Entrega para revisión · 2026-08-30</p>
+        <div class="grow">
+          <h1>Goval TPA &amp; AA Corredores</h1>
+          <p class="lede">
+            Resumen de lo entregado y enlaces para revisar ambas páginas.
+            <span class="en">What’s delivered and where to review both landing pages.</span>
+          </p>
+          <div class="preview-links">
+            <a href="https://hectortorrese.github.io/goval-tpa/" target="_blank" rel="noopener">
+              Goval
+              <span>Abrir página · Open site</span>
+            </a>
+            <a href="https://hectortorrese.github.io/aa-corredores/" target="_blank" rel="noopener">
+              AA Corredores
+              <span>Abrir página · Open site</span>
+            </a>
+          </div>
+        </div>
+        <div class="footer-meta"><span>Entrega de proyecto</span><span>Vista previa lista</span></div>
+      </div>
+    </section>
+
+    <!-- 2 Agenda -->
+    <section class="slide" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Agenda</p>
+        <div class="grow">
+          <h2>Qué verán en esta presentación</h2>
+          <p class="lede">A short walkthrough of the delivery</p>
+          <ol class="agenda">
+            <li>
+              <span class="num">01</span>
+              <div class="body"><strong>Cómo revisar las páginas</strong><span class="en">Where to open the previews</span></div>
+            </li>
+            <li>
+              <span class="num">02</span>
+              <div class="body"><strong>Lo que pidieron</strong><span class="en">Original request</span></div>
+            </li>
+            <li>
+              <span class="num">03</span>
+              <div class="body"><strong>Qué está listo</strong><span class="en">What was built</span></div>
+            </li>
+            <li>
+              <span class="num">04</span>
+              <div class="body"><strong>Cada marca (Goval y AA)</strong><span class="en">Each site at a glance</span></div>
+            </li>
+            <li>
+              <span class="num">05</span>
+              <div class="body"><strong>Visibilidad en Google (SEO)</strong><span class="en">Search readiness</span></div>
+            </li>
+            <li>
+              <span class="num">06</span>
+              <div class="body"><strong>Pendientes y siguientes pasos</strong><span class="en">What we need from you next</span></div>
+            </li>
+          </ol>
+        </div>
+        <div class="footer-meta"><span>Goval · AA Corredores</span><span></span></div>
+      </div>
+    </section>
+
+    <!-- 3 How to review -->
+    <section class="slide" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Revisión</p>
+        <div class="grow">
+          <h2>Dónde revisar las páginas</h2>
+          <p class="lede">Use these links on phone or computer. Try the ES / EN language switch.</p>
+          <div class="preview-links">
+            <a href="https://hectortorrese.github.io/goval-tpa/" target="_blank" rel="noopener">
+              Goval
+              <span>hectortorrese.github.io/goval-tpa</span>
+            </a>
+            <a href="https://hectortorrese.github.io/aa-corredores/" target="_blank" rel="noopener">
+              AA Corredores
+              <span>hectortorrese.github.io/aa-corredores</span>
+            </a>
+          </div>
+          <div class="note">
+            Tip: agregue <code>?lang=en</code> a la URL para forzar inglés, o use el selector de idioma en la página.
+          </div>
+        </div>
+        <div class="footer-meta"><span>GitHub Pages · vista previa gratis</span><span></span></div>
+      </div>
+    </section>
+
+    <!-- 4 Request -->
+    <section class="slide" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Pedido original</p>
+        <div class="grow">
+          <h2>Lo que se solicitó</h2>
+          <p class="lede">What you asked for</p>
+          <ul class="list-check">
+            <li>Dos landing pages modernas y limpias (poca animación)</li>
+            <li>Español e inglés en cada sitio</li>
+            <li>Un repositorio / proyecto separado por marca</li>
+            <li>Vista previa gratis para revisar antes de decidir hosting final</li>
+          </ul>
+        </div>
+        <div class="footer-meta"><span>Brief del cliente</span><span></span></div>
+      </div>
+    </section>
+
+    <!-- 5 What shipped -->
+    <section class="slide" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Entregado</p>
+        <div class="grow">
+          <h2>Qué está listo hoy</h2>
+          <p class="lede">What you can review right now</p>
+          <ul class="list-check">
+            <li>Páginas publicadas en internet (enlaces de preview)</li>
+            <li>Diseño alineado a colores / logos de cada marca</li>
+            <li>Cambio de idioma ES ↔ EN</li>
+            <li>Versión móvil (header y botones ajustados)</li>
+            <li>Preparación básica para buscadores (SEO)</li>
+            <li>Contacto AA incluido; Goval pendiente de datos oficiales</li>
+          </ul>
+        </div>
+        <div class="footer-meta"><span>Estado: listo para su feedback</span><span></span></div>
+      </div>
+    </section>
+
+    <!-- 6 Two brands -->
+    <section class="slide" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Las dos marcas</p>
+        <div class="grow">
+          <h2>Cada sitio tiene su propio foco</h2>
+          <p class="lede">Two companies, two clear messages — not mixed together.</p>
+          <div class="grid-2">
+            <div class="panel">
+              <span class="tag">Goval</span>
+              <h3>TPA · asistencia médica y al viajero</h3>
+              <p>Third Party Administrator en República Dominicana: emergencias, siniestros, red de prestadores, asistencia 24/7.</p>
+              <p class="muted">Para aseguradoras y viajeros — no es una corredora de seguros.</p>
+            </div>
+            <div class="panel">
+              <span class="tag aa">AA Corredores</span>
+              <h3>Corredora de seguros · Santo Domingo</h3>
+              <p>Corretaje y reaseguros: salud / ARS / AFP, viajes, intermediación con aseguradoras.</p>
+              <p class="muted">No es un TPA de siniestros — ese rol es de Goval.</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-meta"><span>Mensaje claro por marca</span><span></span></div>
+      </div>
+    </section>
+
+    <!-- 7 How to use each page -->
+    <section class="slide" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Al revisar</p>
+        <div class="grow">
+          <h2>Qué mirar en cada página</h2>
+          <p class="lede">A simple review checklist</p>
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Diseño y marca</h3>
+              <p>¿Se siente como su empresa? Logo, colores, tono del texto.</p>
+            </div>
+            <div class="panel">
+              <h3>Contenido</h3>
+              <p>¿Los servicios y mensajes son correctos en español e inglés?</p>
+            </div>
+            <div class="panel">
+              <h3>Móvil</h3>
+              <p>Ábralo en el teléfono: menú, botones y encabezado.</p>
+            </div>
+            <div class="panel">
+              <h3>Contacto / CTA</h3>
+              <p>¿Los datos de contacto y el llamado a la acción son los correctos?</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-meta"><span>Guía rápida de revisión</span><span></span></div>
+      </div>
+    </section>
+
+    <!-- 8 SEO (one section, client language) -->
+    <section class="slide" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Visibilidad en Google</p>
+        <div class="grow">
+          <h2>También preparamos el sitio para buscadores</h2>
+          <p class="lede">So Google can understand and find each page more easily.</p>
+          <ul class="list-check">
+            <li>Títulos y descripciones en español e inglés</li>
+            <li>Vista atractiva al compartir en WhatsApp / redes</li>
+            <li>Archivos para Google (<code>robots.txt</code> + <code>sitemap.xml</code>): permiso para indexar + mapa de URLs</li>
+            <li>Datos de negocio estructurados (tipo de empresa)</li>
+          </ul>
+          <div class="note">
+            Esto no garantiza el puesto #1 en Google; es la base técnica correcta. Con dominio propio se puede conectar Search Console.
+          </div>
+        </div>
+        <div class="footer-meta"><span>SEO incluido en la entrega</span><span></span></div>
+      </div>
+    </section>
+
+    <!-- 9 Needs from client -->
+    <section class="slide" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Necesitamos de ustedes</p>
+        <div class="grow">
+          <h2>Para cerrar la siguiente fase</h2>
+          <p class="lede">What we need from you</p>
+          <ul class="list-check">
+            <li><strong>Feedback</strong> sobre diseño, textos e idioma (¿aprueban o qué cambiar?)</li>
+            <li><strong>Goval:</strong> teléfono, correo y dirección oficiales</li>
+            <li><strong>Dominios finales</strong> cuando aprueben (ej. govaltpa.com, aacorredores.com)</li>
+            <li>Confirmar si el logo de AA debe reemplazarse por otra versión</li>
+          </ul>
+        </div>
+        <div class="footer-meta"><span>Pendientes del cliente</span><span></span></div>
+      </div>
+    </section>
+
+    <!-- 10 Hosting -->
+    <section class="slide" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Hosting</p>
+        <div class="grow">
+          <h2>Dónde vive el sitio ahora</h2>
+          <div class="grid-2">
+            <div class="panel">
+              <h3>Hoy</h3>
+              <p>GitHub Pages — gratis, solo para que ustedes revisen y aprueben.</p>
+            </div>
+            <div class="panel">
+              <h3>Después de aprobar</h3>
+              <p>Dominio propio + hosting a acordar (Pages, Cloudflare, Vercel, u otro).</p>
+            </div>
+          </div>
+        </div>
+        <div class="footer-meta"><span>Hosting definitivo = después de su OK</span><span></span></div>
+      </div>
+    </section>
+
+    <!-- 11 Close -->
+    <section class="slide" data-slide>
+      <div class="slide-inner">
+        <p class="kicker" style="text-align:center">Siguiente paso</p>
+        <div class="grow">
+          <h1>Ábranlo, revísenlo, coméntenos</h1>
+          <p class="lede">
+            Open both sites, check design and copy, then send feedback.
+          </p>
+          <div class="preview-links">
+            <a href="https://hectortorrese.github.io/goval-tpa/" target="_blank" rel="noopener">
+              Goval
+              <span>Ir a la página</span>
+            </a>
+            <a href="https://hectortorrese.github.io/aa-corredores/" target="_blank" rel="noopener">
+              AA Corredores
+              <span>Ir a la página</span>
+            </a>
+          </div>
+        </div>
+        <div class="footer-meta"><span>Gracias · quedamos atentos a sus comentarios</span><span>2026-08-30</span></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="chrome" role="navigation" aria-label="Controles">
+    <span class="hint">← → · espacio</span>
+    <div class="dots" id="dots"></div>
+    <div class="nav-btns">
+      <button type="button" class="go" id="prev">← Anterior</button>
+      <button type="button" class="go" id="next">Siguiente →</button>
+      <span id="counter"></span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll("[data-slide]"));
+      const dots = document.getElementById("dots");
+      const counter = document.getElementById("counter");
+      let i = 0;
+
+      slides.forEach((_, idx) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.setAttribute("aria-label", "Ir a diapositiva " + (idx + 1));
+        b.addEventListener("click", () => go(idx));
+        dots.appendChild(b);
+      });
+
+      function go(n) {
+        i = (n + slides.length) % slides.length;
+        slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+        Array.from(dots.children).forEach((d, idx) => d.classList.toggle("is-on", idx === i));
+        counter.textContent = (i + 1) + " / " + slides.length;
+      }
+
+      function bind(id, fn) {
+        document.getElementById(id).addEventListener("click", fn);
+      }
+      bind("prev", () => go(i - 1));
+      bind("next", () => go(i + 1));
+      bind("sidePrev", () => go(i - 1));
+      bind("sideNext", () => go(i + 1));
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
+          e.preventDefault(); go(i + 1);
+        } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
+          e.preventDefault(); go(i - 1);
+        } else if (e.key === "Home") go(0);
+        else if (e.key === "End") go(slides.length - 1);
+      });
+
+      go(0);
+    })();
+  </script>
+</body>
+</html>
