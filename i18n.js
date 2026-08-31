@@ -61,6 +61,13 @@ const dict = {
     "form.submit": "Enviar mensaje",
     "form.hint": "El mensaje llega al correo de AA Corredores.",
     "form.sent": "Mensaje enviado. Gracias — le responderemos pronto.",
+    "form.phonePlaceholder": "+1 809-000-0000",
+    "form.err.emailRequired": "Ingrese su correo electrónico.",
+    "form.err.emailInvalid": "Ingrese un correo válido (ej. nombre@empresa.com).",
+    "form.err.phoneRequired": "Ingrese su número de teléfono.",
+    "form.err.phoneInvalid": "Ingrese un teléfono válido (mín. 10 dígitos; ej. +1 809-555-1234).",
+    "form.err.nameRequired": "Ingrese su nombre (mín. 2 caracteres).",
+    "form.err.messageRequired": "Escriba un mensaje (mín. 10 caracteres).",
     "theme.toDark": "Activar modo oscuro",
     "theme.toLight": "Activar modo claro",
     "footer": "© AA Corredores · Santo Domingo",
@@ -108,11 +115,20 @@ const dict = {
     "form.submit": "Send message",
     "form.hint": "Messages go to AA Corredores’ inbox.",
     "form.sent": "Message sent. Thank you — we’ll reply soon.",
+    "form.phonePlaceholder": "+1 809-000-0000",
+    "form.err.emailRequired": "Please enter your email address.",
+    "form.err.emailInvalid": "Enter a valid email (e.g. name@company.com).",
+    "form.err.phoneRequired": "Please enter your phone number.",
+    "form.err.phoneInvalid": "Enter a valid phone (min. 10 digits; e.g. +1 809-555-1234).",
+    "form.err.nameRequired": "Please enter your name (min. 2 characters).",
+    "form.err.messageRequired": "Please write a message (min. 10 characters).",
     "theme.toDark": "Switch to dark mode",
     "theme.toLight": "Switch to light mode",
     "footer": "© AA Corredores · Santo Domingo",
   },
 };
+
+window.dict = dict;
 
 function setMeta(name, content, attr = "name") {
   let el = document.querySelector(`meta[${attr}="${name}"]`);
@@ -149,11 +165,10 @@ function applyLang(lang) {
   url.searchParams.set("lang", lang);
   history.replaceState({}, "", url);
   syncThemeLabel();
+  if (typeof window.refreshFormValidationCopy === "function") {
+    window.refreshFormValidationCopy();
+  }
 }
-
-document.querySelectorAll(".lang button").forEach((btn) => {
-  btn.addEventListener("click", () => applyLang(btn.dataset.lang));
-});
 
 const params = new URLSearchParams(window.location.search);
 const fromQuery = params.get("lang");
