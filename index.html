@@ -160,24 +160,24 @@
           <input type="hidden" name="_subject" value="Contacto web — AA Corredores" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
-          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <input type="hidden" name="_next" value="https://hectortorrese.github.io/aa-corredores/?sent=1#contact" />
-          <label>
-            <span data-i18n="form.name">Nombre</span>
-            <input type="text" name="name" required autocomplete="name" />
-          </label>
-          <label>
-            <span data-i18n="form.email">Correo</span>
-            <input type="email" name="email" required autocomplete="email" />
-          </label>
-          <label>
-            <span data-i18n="form.phone">Teléfono</span>
-            <input type="tel" name="phone" autocomplete="tel" />
-          </label>
-          <label>
-            <span data-i18n="form.message">Mensaje</span>
-            <textarea name="message" rows="4" required></textarea>
-          </label>
+          <div class="field">
+            <label for="aa-name"><span data-i18n="form.name">Nombre</span></label>
+            <input id="aa-name" type="text" name="name" required autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="aa-email"><span data-i18n="form.email">Correo</span></label>
+            <input id="aa-email" type="email" name="email" required autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="aa-phone"><span data-i18n="form.phone">Teléfono</span></label>
+            <input id="aa-phone" type="tel" name="phone" autocomplete="tel" />
+          </div>
+          <div class="field">
+            <label for="aa-message"><span data-i18n="form.message">Mensaje</span></label>
+            <textarea id="aa-message" name="message" rows="4" required></textarea>
+          </div>
           <button type="submit" class="btn" data-i18n="form.submit">Enviar mensaje</button>
           <p class="form-hint" data-i18n="form.hint">El mensaje llega al correo de AA Corredores.</p>
         </form>
