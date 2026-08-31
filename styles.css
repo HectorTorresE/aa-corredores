@@ -398,4 +398,39 @@ html[data-theme="dark"] .brand img {
   .hero-panel { width: 28vw; opacity: 0.35; }
   .hero-grid, .about-grid, .services, .contact-grid { grid-template-columns: 1fr; }
   .hero-aside { display: none; }
+
+  .wrap { width: min(1080px, calc(100% - 1.25rem)); }
+  .header-inner {
+    gap: 0.5rem;
+    min-height: 3.6rem;
+  }
+  .brand {
+    padding: 0.2rem 0.35rem;
+    max-width: 46%;
+  }
+  .brand img {
+    width: min(132px, 100%);
+  }
+  .header-actions {
+    gap: 0.35rem;
+    margin-left: auto;
+  }
+  .lang button {
+    padding: 0.28rem 0.45rem;
+    font-size: 0.72rem;
+  }
+  .theme-toggle {
+    width: 2rem;
+    height: 2rem;
+  }
+  .header-actions .btn-sm {
+    padding: 0.42rem 0.65rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .header-actions .btn-sm { display: none; }
+  .brand { max-width: 52%; }
+  .brand img { width: min(118px, 100%); }
 }

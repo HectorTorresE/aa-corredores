@@ -170,8 +170,8 @@
       display: flex;
       gap: 0.85rem;
       align-items: flex-start;
-      font-size: clamp(1rem, 1.55vw, 1.12rem);
-      line-height: 1.4;
+      font-size: clamp(0.95rem, 1.55vw, 1.12rem);
+      line-height: 1.45;
     }
     .list-check li::before {
       content: "";
@@ -180,6 +180,15 @@
       height: 0.7rem;
       margin-top: 0.4rem;
       background: var(--lime);
+    }
+    .list-check .li-text {
+      flex: 1;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    .list-check .li-text strong {
+      font-weight: 700;
+      color: #fff;
     }
 
     .preview-links {
@@ -355,6 +364,61 @@
       .side-nav { display: none; }
       .chrome .hint { display: none; }
     }
+
+    /* Mobile: one long scrolling page */
+    @media (max-width: 768px) {
+      :root {
+        --side-pad: 1.1rem;
+        --chrome-h: 3.75rem;
+      }
+      html, body {
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+      body { background: #122a40; }
+      .deck {
+        height: auto;
+        padding-bottom: calc(var(--chrome-h) + 0.5rem);
+      }
+      .slide {
+        position: relative;
+        inset: auto;
+        bottom: auto;
+        display: flex !important;
+        min-height: auto;
+        padding: 1.35rem var(--side-pad) 1.75rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+      }
+      .slide-inner {
+        width: 100%;
+        max-width: 40rem;
+      }
+      .grow {
+        justify-content: flex-start;
+        padding: 0.35rem 0 0.75rem;
+      }
+      h1 { font-size: clamp(1.7rem, 8vw, 2.3rem); max-width: none; }
+      h2 { font-size: clamp(1.3rem, 6vw, 1.75rem); }
+      .lede { margin-bottom: 1rem; }
+      .preview-links { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .agenda { grid-template-columns: 1fr; }
+      .side-nav { display: none !important; }
+      .chrome {
+        grid-template-columns: 1fr auto;
+        padding: 0 0.75rem;
+      }
+      .chrome .hint { display: none; }
+      .nav-btns .go {
+        min-width: 0;
+        padding: 0.55rem 0.75rem;
+        font-size: 0.85rem;
+      }
+      #counter { min-width: 3rem; font-size: 0.85rem; }
+      .footer-meta { font-size: 0.75rem; }
+    }
   </style>
 </head>
 <body>
@@ -456,13 +520,13 @@
           <h2>Qué está listo hoy</h2>
           <p class="lede">What you can review right now</p>
           <ul class="list-check">
-            <li>Páginas publicadas en internet (enlaces de preview)</li>
-            <li>Diseño alineado a colores / logos de cada marca</li>
-            <li>Cambio de idioma ES ↔ EN</li>
-            <li>Modo claro / modo oscuro (botón en el encabezado)</li>
-            <li>Versión móvil (header y botones ajustados)</li>
-            <li>Formulario de contacto que envía mensajes a su correo</li>
-            <li>Preparación básica para buscadores (SEO)</li>
+            <li><span class="li-text">Páginas publicadas en internet (enlaces de preview)</span></li>
+            <li><span class="li-text">Diseño alineado a colores / logos de cada marca</span></li>
+            <li><span class="li-text">Cambio de idioma ES ↔ EN</span></li>
+            <li><span class="li-text">Modo claro / modo oscuro (botón en el encabezado)</span></li>
+            <li><span class="li-text">Versión móvil (header y botones ajustados)</span></li>
+            <li><span class="li-text">Formulario de contacto que envía mensajes a su correo</span></li>
+            <li><span class="li-text">Preparación básica para buscadores (SEO)</span></li>
           </ul>
         </div>
         <div class="footer-meta"><span>Estado: listo para su feedback</span><span></span></div>
@@ -533,10 +597,10 @@
           <h2>También preparamos el sitio para buscadores</h2>
           <p class="lede">So Google can understand and find each page more easily.</p>
           <ul class="list-check">
-            <li>Títulos y descripciones en español e inglés</li>
-            <li>Vista atractiva al compartir en WhatsApp / redes</li>
-            <li>Archivos para Google (<code>robots.txt</code> + <code>sitemap.xml</code>): permiso para indexar + mapa de URLs</li>
-            <li>Datos de negocio estructurados (tipo de empresa)</li>
+            <li><span class="li-text">Títulos y descripciones en español e inglés</span></li>
+            <li><span class="li-text">Vista atractiva al compartir en WhatsApp / redes</span></li>
+            <li><span class="li-text">Archivos para Google (<code>robots.txt</code> + <code>sitemap.xml</code>): permiso para indexar + mapa de URLs</span></li>
+            <li><span class="li-text">Datos de negocio estructurados (tipo de empresa)</span></li>
           </ul>
           <div class="note">
             Esto no garantiza el puesto #1 en Google; es la base técnica correcta. Con dominio propio se puede conectar Search Console.
@@ -617,14 +681,14 @@
           <h2>Para cerrar la siguiente fase</h2>
           <p class="lede">What we need from you</p>
           <ul class="list-check">
-            <li><strong>Feedback</strong> sobre diseño, textos e idioma</li>
-            <li><strong>Goval — contacto oficial:</strong> teléfono, correo y dirección (para publicar y el botón “llamar”)</li>
-            <li><strong>AA Corredores — confirmar:</strong> teléfono, correo y dirección actuales, o corregirlos si cambian</li>
-            <li>Preferencia de <strong>formulario</strong>: gratis (actual) u opción de pago</li>
-            <li>Preferencia de <strong>hosting</strong>: A / B / C (o lo que ya tengan)</li>
-            <li><strong>Dominios</strong> si ya los tienen, o si hay que comprarlos</li>
-            <li>Confirmar logo de AA (¿queda el actual o envían otra versión?)</li>
-            <li>Cualquier otro cambio de texto, fotos o datos legales que deban aparecer en las páginas</li>
+            <li><span class="li-text"><strong>Feedback</strong> sobre diseño, textos e idioma</span></li>
+            <li><span class="li-text"><strong>Goval — contacto oficial:</strong> teléfono, correo y dirección (para publicar y el botón “llamar”)</span></li>
+            <li><span class="li-text"><strong>AA Corredores — confirmar:</strong> teléfono, correo y dirección actuales, o corregirlos si cambian</span></li>
+            <li><span class="li-text">Preferencia de <strong>formulario</strong>: gratis (actual) u opción de pago</span></li>
+            <li><span class="li-text">Preferencia de <strong>hosting</strong>: A / B / C (o lo que ya tengan)</span></li>
+            <li><span class="li-text"><strong>Dominios</strong> si ya los tienen, o si hay que comprarlos</span></li>
+            <li><span class="li-text">Confirmar logo de AA (¿queda el actual o envían otra versión?)</span></li>
+            <li><span class="li-text">Cualquier otro cambio de texto, fotos o datos legales que deban aparecer en las páginas</span></li>
           </ul>
         </div>
         <div class="footer-meta"><span>Pendientes del cliente</span><span></span></div>
@@ -672,6 +736,11 @@
       const dots = document.getElementById("dots");
       const counter = document.getElementById("counter");
       let i = 0;
+      const mq = window.matchMedia("(max-width: 768px)");
+
+      function isScrollMode() {
+        return mq.matches;
+      }
 
       slides.forEach((_, idx) => {
         const b = document.createElement("button");
@@ -681,11 +750,23 @@
         dots.appendChild(b);
       });
 
-      function go(n) {
+      function setActive(n) {
         i = (n + slides.length) % slides.length;
-        slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+        if (!isScrollMode()) {
+          slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+        }
         Array.from(dots.children).forEach((d, idx) => d.classList.toggle("is-on", idx === i));
         counter.textContent = (i + 1) + " / " + slides.length;
+      }
+
+      function go(n) {
+        const next = (n + slides.length) % slides.length;
+        if (isScrollMode()) {
+          slides[next].scrollIntoView({ behavior: "smooth", block: "start" });
+          setActive(next);
+        } else {
+          setActive(next);
+        }
       }
 
       function bind(id, fn) {
@@ -697,6 +778,7 @@
       bind("sideNext", () => go(i + 1));
 
       document.addEventListener("keydown", (e) => {
+        if (isScrollMode()) return;
         if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
           e.preventDefault(); go(i + 1);
         } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
@@ -705,7 +787,33 @@
         else if (e.key === "End") go(slides.length - 1);
       });
 
-      go(0);
+      let scrollTick = false;
+      window.addEventListener("scroll", () => {
+        if (!isScrollMode() || scrollTick) return;
+        scrollTick = true;
+        requestAnimationFrame(() => {
+          scrollTick = false;
+          const y = window.scrollY + window.innerHeight * 0.28;
+          let best = 0;
+          slides.forEach((s, idx) => {
+            if (s.offsetTop <= y) best = idx;
+          });
+          setActive(best);
+        });
+      }, { passive: true });
+
+      function onModeChange() {
+        if (isScrollMode()) {
+          slides.forEach((s) => s.classList.add("is-active"));
+          document.querySelector(".chrome .hint").textContent = "Deslice ↓";
+        } else {
+          slides.forEach((s, idx) => s.classList.toggle("is-active", idx === i));
+          document.querySelector(".chrome .hint").textContent = "← → · espacio";
+        }
+        setActive(i);
+      }
+      mq.addEventListener("change", onModeChange);
+      onModeChange();
     })();
   </script>
 </body>
