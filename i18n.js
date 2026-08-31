@@ -24,6 +24,8 @@ const dict = {
     "nav.travel": "Viajes",
     "nav.contact": "Contacto",
     "nav.cta": "Asesoría",
+    "nav.menu": "Abrir menú",
+    "nav.close": "Cerrar menú",
     "hero.eyebrow": "Registrada ante la Superintendencia de Seguros",
     "hero.title": "AA Corredores",
     "hero.tagline":
@@ -78,6 +80,8 @@ const dict = {
     "nav.travel": "Travel",
     "nav.contact": "Contact",
     "nav.cta": "Advice",
+    "nav.menu": "Open menu",
+    "nav.close": "Close menu",
     "hero.eyebrow": "Registered with the Dominican Insurance Superintendency",
     "hero.title": "AA Corredores",
     "hero.tagline":
