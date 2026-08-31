@@ -58,6 +58,7 @@ En **ambas** páginas:
 - Datos estructurados JSON-LD (Schema.org)
 - Encabezados (H1/H2/H3) alineados a los temas SEO sin relleno artificial
 - Idioma por defecto: español (mercado RD)
+- Modo claro / modo oscuro (toggle en el encabezado; respeta preferencia del sistema)
 
 ### 2.1 Qué son `robots.txt` y `sitemap.xml` / What they are
 

@@ -61,6 +61,8 @@ const dict = {
     "form.submit": "Enviar mensaje",
     "form.hint": "El mensaje llega al correo de AA Corredores.",
     "form.sent": "Mensaje enviado. Gracias — le responderemos pronto.",
+    "theme.toDark": "Activar modo oscuro",
+    "theme.toLight": "Activar modo claro",
     "footer": "© AA Corredores · Santo Domingo",
   },
   en: {
@@ -106,6 +108,8 @@ const dict = {
     "form.submit": "Send message",
     "form.hint": "Messages go to AA Corredores’ inbox.",
     "form.sent": "Message sent. Thank you — we’ll reply soon.",
+    "theme.toDark": "Switch to dark mode",
+    "theme.toLight": "Switch to light mode",
     "footer": "© AA Corredores · Santo Domingo",
   },
 };
@@ -144,6 +148,7 @@ function applyLang(lang) {
   const url = new URL(window.location.href);
   url.searchParams.set("lang", lang);
   history.replaceState({}, "", url);
+  syncThemeLabel();
 }
 
 document.querySelectorAll(".lang button").forEach((btn) => {
@@ -174,3 +179,25 @@ if (new URLSearchParams(window.location.search).get("sent") === "1") {
     banner.classList.add("is-visible");
   }
 }
+
+function syncThemeLabel() {
+  const btn = document.getElementById("themeToggle");
+  if (!btn) return;
+  const lang = document.documentElement.lang === "en" ? "en" : "es";
+  const pack = dict[lang] || dict.es;
+  const dark = document.documentElement.getAttribute("data-theme") === "dark";
+  const label = dark ? pack["theme.toLight"] : pack["theme.toDark"];
+  btn.setAttribute("aria-label", label);
+  btn.setAttribute("title", label);
+}
+
+document.getElementById("themeToggle")?.addEventListener("click", () => {
+  const next =
+    document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  try {
+    localStorage.setItem("aa-theme", next);
+  } catch (_) {}
+  syncThemeLabel();
+});
+syncThemeLabel();
