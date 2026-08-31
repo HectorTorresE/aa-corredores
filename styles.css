@@ -102,8 +102,26 @@ html[data-theme="dark"] .lang button.is-active { background: #1a6f9a; color: #ff
 html[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
+.brand {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.4rem;
+  background: transparent;
+}
+.brand img {
+  width: 196px;
+  height: auto;
+  display: block;
+}
+html[data-theme="dark"] .brand {
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
 html[data-theme="dark"] .brand img {
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .btn {

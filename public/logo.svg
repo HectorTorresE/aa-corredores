@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" fill="none">
-  <path d="M8 58 L48 8 L88 58 Z" fill="#0A2342"/>
-  <path d="M38 58 L68 16 L98 58 Z" fill="#7CDB2E"/>
-  <path d="M18 50 Q52 28 92 50" stroke="#0A2342" stroke-width="3" fill="none"/>
-  <text x="112" y="34" font-family="Arial Black, Arial, sans-serif" font-size="22" font-weight="700" fill="#0A2342" letter-spacing="1">AA</text>
-  <text x="112" y="56" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#0A2342" letter-spacing="3">CORREDORES</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 72" role="img" aria-label="AA Corredores">
+  <path d="M10 60 L52 8 L94 60 Z" fill="#0A2342"/>
+  <path d="M42 60 L74 18 L106 60 Z" fill="#7CDB2E"/>
+  <path d="M22 52 Q58 30 98 52" stroke="#0A2342" stroke-width="3" fill="none"/>
+  <text x="124" y="32" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#0A2342" letter-spacing="1.5">AA</text>
+  <text x="124" y="54" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#0A2342" letter-spacing="3.5">CORREDORES</text>
 </svg>
