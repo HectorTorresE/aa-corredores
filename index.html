@@ -138,13 +138,49 @@
       <div class="wrap contact-grid">
         <div>
           <h2 data-i18n="contact.title">Contacto</h2>
-          <p data-i18n="contact.p">Cuéntenos qué necesita proteger. Le ayudamos a comparar y elegir.</p>
+          <p data-i18n="contact.p">Cuéntenos qué necesita proteger. Escríbanos o llámenos — le ayudamos a comparar y elegir.</p>
+          <address class="vcard">
+            <p>
+              <strong data-i18n="contact.phoneLabel">Teléfono</strong><br />
+              <a href="tel:+18095349502">+1 809-534-9502</a>
+            </p>
+            <p>
+              <strong data-i18n="contact.emailLabel">Correo</strong><br />
+              <a href="mailto:admin@aacorredores.com">admin@aacorredores.com</a>
+            </p>
+            <p data-i18n="contact.addr">Calle Crisantemos #1, Urb. Los Jardines. Santo Domingo, República Dominicana</p>
+          </address>
         </div>
-        <address class="vcard">
-          <p><a href="tel:+18095349502">+1 809-534-9502</a></p>
-          <p><a href="mailto:admin@aacorredores.com">admin@aacorredores.com</a></p>
-          <p data-i18n="contact.addr">Calle Crisantemos #1, Urb. Los Jardines. Santo Domingo, República Dominicana</p>
-        </address>
+        <form
+          class="contact-form"
+          action="https://formsubmit.co/admin@aacorredores.com"
+          method="POST"
+        >
+          <p class="form-sent" data-i18n="form.sent" hidden>Mensaje enviado. Gracias — le responderemos pronto.</p>
+          <input type="hidden" name="_subject" value="Contacto web — AA Corredores" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="_next" value="https://hectortorrese.github.io/aa-corredores/?sent=1#contact" />
+          <label>
+            <span data-i18n="form.name">Nombre</span>
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label>
+            <span data-i18n="form.email">Correo</span>
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+          <label>
+            <span data-i18n="form.phone">Teléfono</span>
+            <input type="tel" name="phone" autocomplete="tel" />
+          </label>
+          <label>
+            <span data-i18n="form.message">Mensaje</span>
+            <textarea name="message" rows="4" required></textarea>
+          </label>
+          <button type="submit" class="btn" data-i18n="form.submit">Enviar mensaje</button>
+          <p class="form-hint" data-i18n="form.hint">El mensaje llega al correo de AA Corredores.</p>
+        </form>
       </div>
     </section>
   </main>

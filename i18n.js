@@ -49,9 +49,18 @@ const dict = {
     "travel.p":
       "Administración y comercialización de seguros de viaje para que salga con respaldo — antes, durante y después del trayecto.",
     "contact.title": "Contacto — corredora de seguros en Santo Domingo",
-    "contact.p": "Cuéntenos qué necesita proteger. Le ayudamos a comparar y elegir.",
+    "contact.p": "Cuéntenos qué necesita proteger. Escríbanos o llámenos — le ayudamos a comparar y elegir.",
+    "contact.phoneLabel": "Teléfono",
+    "contact.emailLabel": "Correo",
     "contact.addr":
       "Calle Crisantemos #1, Urb. Los Jardines. Santo Domingo, República Dominicana",
+    "form.name": "Nombre",
+    "form.email": "Correo",
+    "form.phone": "Teléfono",
+    "form.message": "Mensaje",
+    "form.submit": "Enviar mensaje",
+    "form.hint": "El mensaje llega al correo de AA Corredores.",
+    "form.sent": "Mensaje enviado. Gracias — le responderemos pronto.",
     "footer": "© AA Corredores · Santo Domingo",
   },
   en: {
@@ -85,9 +94,18 @@ const dict = {
     "travel.p":
       "Travel insurance administration and sales so you leave with backup — before, during, and after the trip.",
     "contact.title": "Contact — insurance brokerage in Santo Domingo",
-    "contact.p": "Tell us what you need to protect. We’ll help you compare and choose.",
+    "contact.p": "Tell us what you need to protect. Write or call — we’ll help you compare and choose.",
+    "contact.phoneLabel": "Phone",
+    "contact.emailLabel": "Email",
     "contact.addr":
       "Calle Crisantemos #1, Urb. Los Jardines. Santo Domingo, Dominican Republic",
+    "form.name": "Name",
+    "form.email": "Email",
+    "form.phone": "Phone",
+    "form.message": "Message",
+    "form.submit": "Send message",
+    "form.hint": "Messages go to AA Corredores’ inbox.",
+    "form.sent": "Message sent. Thank you — we’ll reply soon.",
     "footer": "© AA Corredores · Santo Domingo",
   },
 };
@@ -148,3 +166,11 @@ const initial =
       ? saved
       : "es";
 applyLang(initial);
+
+if (new URLSearchParams(window.location.search).get("sent") === "1") {
+  const banner = document.querySelector(".form-sent");
+  if (banner) {
+    banner.hidden = false;
+    banner.classList.add("is-visible");
+  }
+}
