@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 72" role="img" aria-label="AA Corredores">
-  <path d="M10 60 L52 8 L94 60 Z" fill="#0A2342"/>
-  <path d="M42 60 L74 18 L106 60 Z" fill="#7CDB2E"/>
-  <path d="M22 52 Q58 30 98 52" stroke="#0A2342" stroke-width="3" fill="none"/>
-  <text x="124" y="32" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#0A2342" letter-spacing="1.5">AA</text>
-  <text x="124" y="54" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#0A2342" letter-spacing="3.5">CORREDORES</text>
-</svg>

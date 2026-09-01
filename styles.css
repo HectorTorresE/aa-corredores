@@ -112,8 +112,9 @@ html[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
   background: transparent;
 }
 .brand .logo {
-  width: 196px;
-  height: auto;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
   display: block;
 }
 .brand .logo-dark { display: none; }
@@ -488,7 +489,8 @@ html[data-theme="dark"] .brand .logo-dark { display: block; }
     box-shadow: none;
   }
   .brand .logo {
-    width: min(128px, 100%);
+    width: 44px;
+    height: 44px;
   }
   .header-actions {
     gap: 0.35rem;
@@ -511,5 +513,5 @@ html[data-theme="dark"] .brand .logo-dark { display: block; }
 @media (max-width: 400px) {
   .header-actions .btn-sm { display: none; }
   .brand { max-width: 48%; }
-  .brand .logo { width: min(112px, 100%); }
+  .brand .logo { width: 40px; height: 40px; }
 }
